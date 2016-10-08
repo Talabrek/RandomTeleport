@@ -484,14 +484,15 @@ public class RandomTeleport extends JavaPlugin implements CommandExecutor {
                         z = chunklist.get(chunknumber)[1] * 16 + r.nextInt(15);
                     } else {
                         //get random range in min and max range
-
+                        int xRange;
+                        int zRange;    
                         if (r.nextBoolean())
                         {
-                            int xRange = minRange + r.nextInt(maxRange - minRange);
-                            int zRange = r.nextInt(maxRange);
+                            xRange = minRange + r.nextInt(maxRange - minRange);
+                            zRange = r.nextInt(maxRange);
                         } else {
-                            int zRange = minRange + r.nextInt(maxRange - minRange);
-                            int xRange = r.nextInt(maxRange);
+                            zRange = minRange + r.nextInt(maxRange - minRange);
+                            xRange = r.nextInt(maxRange);
                         }
 
                         //make range negative with a 50% chance
