@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>de.themoep</groupId>
+    <artifactId>RandomTeleport</artifactId>
+    <version>1.7.3</version>
+    <description>Randomly teleport players on your server!</description>
+    <name>RandomTeleport</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <build.number>${buildNumber}</build.number>
+        <minecraft.plugin.version>${project.version} ${buildDescription}</minecraft.plugin.version>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
+        </repository>
+        <repository>
+            <id>sk89q-repo</id>
+            <url>http://maven.sk89q.com/repo/</url>
+        </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.bukkit</groupId>
+            <artifactId>bukkit</artifactId>
+            <version>1.9-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>de.themoep</groupId>
+            <artifactId>ClanControl</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.sk89q</groupId>
+            <artifactId>worldguard</artifactId>
+            <version>6.1.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>me.ryanhamshire</groupId>
+            <artifactId>GriefPrevention</artifactId>
+            <version>13.6</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/GriefPrevention-13.6.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.massivecraft</groupId>
+            <artifactId>MassiveCore</artifactId>
+            <version>2.7.1</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/MassiveCore-2.7.1.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.massivecraft</groupId>
+            <artifactId>MassiveCore-old</artifactId>
+            <version>7.4.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/MassiveCore-7.4.0.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>de.themoep</groupId>
+            <artifactId>factionsutil</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/Factions-Dependencies-2.6+2.7.1+UUID.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.github.Brettflan</groupId>
+            <artifactId>WorldBorder</artifactId>
+            <version>master-c5df3417c8-1</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>static_build_number</id>
+            <activation>
+                <property>
+                    <name>!env.BUILD_NUMBER</name>
+                </property>
+            </activation>
+            <properties>
+                <buildNumber>0</buildNumber>
+                <buildDescription>(manually compiled)</buildDescription>
+            </properties>
+        </profile>
+        <profile>
+            <id>dynamic_build_number</id>
+            <activation>
+                <property>
+                    <name>env.BUILD_NUMBER</name>
+                </property>
+            </activation>
+            <properties>
+                <buildNumber>${env.BUILD_NUMBER}</buildNumber>
+                <buildDescription>(build #${env.BUILD_NUMBER})</buildDescription>
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <finalName>${project.name}</finalName>
+        <resources>
+            <resource>
+                <filtering>true</filtering>
+                <directory>${project.basedir}/src/main/resources</directory>
+            </resource>
+        </resources>
+    </build>
+    
+</project>
